@@ -10,6 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -30,6 +32,13 @@ public class Message implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+    @ManyToOne
+    @JoinColumn(name = "client_emetteur_id")
+    private Client clientEmetteur;
+    
+    @ManyToOne
+    @JoinColumn(name = "client_Recepteur_id")
+    private Client clientRecepteur;
 
     @Override
     public int hashCode() {

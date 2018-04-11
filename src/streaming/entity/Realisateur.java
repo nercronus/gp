@@ -16,11 +16,11 @@ import javax.persistence.Id;
  * @author Formation
  */
 @Entity
-public class Personne implements Serializable {
+public class Realisateur implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     public Long getId() {
@@ -41,10 +41,10 @@ public class Personne implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Personne)) {
+        if (!(object instanceof Realisateur)) {
             return false;
         }
-        Personne other = (Personne) object;
+        Realisateur other = (Realisateur) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -53,7 +53,7 @@ public class Personne implements Serializable {
 
     @Override
     public String toString() {
-        return "streaming.entity.Personne[ id=" + id + " ]";
+        return "streaming.entity.Realisateur[ id=" + id + " ]";
     }
     
 }

@@ -14,6 +14,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -43,8 +44,10 @@ public class Film implements Serializable {
     @Column(nullable = false)
     private int anneeProd;
     
-    @OneToMany(mappedBy = "film")
-    private List<Lien> liens = new ArrayList<>();
+    @ManyToMany(mappedBy = "films")
+    private List<Acteur> acteurs = new ArrayList<>();
+    
+ 
     /*
     @Temporal(javax.persistence.TemporalType.DATE) // J'ai cliqué sur la petite ampoule pour obtenir cette ligne
     private Date dateSortie;

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package streaming.entity.boutique;
+package streaming.entity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -12,18 +12,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 /**
  *
  * @author Formation
  */
 @Entity
-public class Commande implements Serializable {
+public class Acteur implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -37,13 +34,12 @@ public class Commande implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-   @ManyToMany
-   @JoinTable(name = "commande_produit")
-   private List<Produits> produits = new ArrayList<>();
+    @ManyToMany
+    @JoinTable(name = "acteur_film")
+    private List<Film> films = new ArrayList<>();
     
-    @ManyToOne
-    @JoinColumn(name = "clien_id")
-    private Client client;
+    @ManyToMany(mappedBy = "acteurs" )
+    private List<Serie> series = new ArrayList<>();
 
     @Override
     public int hashCode() {
@@ -55,10 +51,10 @@ public class Commande implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Commande)) {
+        if (!(object instanceof Acteur)) {
             return false;
         }
-        Commande other = (Commande) object;
+        Acteur other = (Acteur) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -67,7 +63,7 @@ public class Commande implements Serializable {
 
     @Override
     public String toString() {
-        return "streaming.entity.boutique.Commande[ id=" + id + " ]";
+        return "streaming.entity.Acteur[ id=" + id + " ]";
     }
     
 }

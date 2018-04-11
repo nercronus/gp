@@ -14,6 +14,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -49,6 +51,11 @@ public class Serie implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+    @ManyToMany
+    @JoinTable(name = "series_acteurs")
+    private List<Acteur> acteurs = new ArrayList<>();
+    
+    
 
     @Override
     public int hashCode() {

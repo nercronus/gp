@@ -6,10 +6,15 @@
 package streaming.entity.boutique;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -30,6 +35,14 @@ public class Client implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+    @OneToMany(mappedBy = "client")
+    private List<Commande> commandes = new ArrayList<>();
+    
+    @OneToMany(mappedBy = "clientEmetteur")
+    private List<Message> messagesEmis = new ArrayList<>();
+    
+    @OneToMany(mappedBy = "clientRecepteur")
+    private List<Message> messagesRecus = new ArrayList<>();
 
     @Override
     public int hashCode() {
